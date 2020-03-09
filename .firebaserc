@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "patients-8b7c3": {
+      "hosting": {
+        "fire-ngxs-patients": [
+          "patients-8b7c3"
+        ]
+      }
+    }
+  }
+}

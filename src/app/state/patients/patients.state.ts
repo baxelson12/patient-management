@@ -44,7 +44,10 @@ export class PatientsState {
 
   // Create
   @Action(actions.CreatePatient)
-  create({ payload }: actions.CreatePatient) {
+  create(
+    ctx: StateContext<PatientsStateModel>,
+    { payload }: actions.CreatePatient
+  ) {
     return this.ds.create$<Patient>('patients', payload);
   }
 
@@ -59,13 +62,19 @@ export class PatientsState {
 
   // Update
   @Action(actions.UpdatePatient)
-  update({ payload }: actions.UpdatePatient) {
+  update(
+    ctx: StateContext<PatientsStateModel>,
+    { payload }: actions.UpdatePatient
+  ) {
     return this.ds.update$<Patient>('patients', payload);
   }
 
   // Destroy
   @Action(actions.DestroyPatient)
-  destroy({ payload }: actions.DestroyPatient) {
+  destroy(
+    ctx: StateContext<PatientsStateModel>,
+    { payload }: actions.DestroyPatient
+  ) {
     return this.ds.destroy$<Patient>('patients', payload);
   }
 }

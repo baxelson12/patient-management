@@ -1,5 +1,5 @@
 export interface Name {
   first: string;
-  middle: string;
+  middle?: string;
   last: string;
 }

@@ -7,7 +7,7 @@ export interface Patient {
   dob: Date;
   email?: string;
   phone: string;
-  address: Address[];
+  address: Address;
   gender: boolean;
   insurance?: string;
   last_exam: Date;

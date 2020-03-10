@@ -3,6 +3,7 @@ import * as actions from './patients.actions';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/data.service';
 import { tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 export class PatientsStateModel {
   public loading: boolean;
@@ -18,6 +19,7 @@ export class PatientsStateModel {
     selected: {}
   }
 })
+@Injectable({ providedIn: 'root' })
 export class PatientsState {
   constructor(private readonly ds: DataService) {}
   ngxsOnInit({ dispatch }: StateContext<PatientsStateModel>) {

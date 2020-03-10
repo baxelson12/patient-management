@@ -2,6 +2,7 @@ import { Address } from './address';
 import { Name } from './name';
 
 export interface Patient {
+  id: string;
   name: Name;
   dob: Date;
   email?: string;

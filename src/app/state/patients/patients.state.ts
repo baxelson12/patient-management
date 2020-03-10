@@ -1,5 +1,5 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { PatientsAction } from './patients.actions';
+import * as actions from './patients.actions';
 
 export class PatientsStateModel {
   public items: string[];
@@ -11,10 +11,4 @@ export class PatientsStateModel {
     items: []
   }
 })
-export class PatientsState {
-  @Action(PatientsAction)
-  add(ctx: StateContext<PatientsStateModel>, action: PatientsAction) {
-    const state = ctx.getState();
-    ctx.setState({ items: [ ...state.items, action.payload ] });
-  }
-}
+export class PatientsState {}

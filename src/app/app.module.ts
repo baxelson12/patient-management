@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 // NGXS
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { PatientsState } from './state/patients/patients.state';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -14,7 +15,6 @@ import { environment } from '../environments/environment';
 // App
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppState } from './store/state/app.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +22,9 @@ import { AppState } from './store/state/app.state';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    NgxsModule.forRoot([AppState]),
+    NgxsModule.forRoot([PatientsState], {
+      developmentMode: !environment.production
+    }),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],

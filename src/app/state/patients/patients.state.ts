@@ -2,13 +2,15 @@ import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
 import * as actions from './patients.actions';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/data.service';
-import { tap } from 'rxjs/operators';
+import { tap, debounceTime, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { iif, of } from 'rxjs';
 
 export class PatientsStateModel {
   public loading: boolean;
   public patients: Patient[];
   public selected: Partial<Patient>;
+  public queryResult: Patient[];
 }
 
 @State<PatientsStateModel>({
@@ -16,14 +18,15 @@ export class PatientsStateModel {
   defaults: {
     loading: false,
     patients: [],
-    selected: {}
+    selected: {},
+    queryResult: []
   }
 })
 @Injectable({ providedIn: 'root' })
 export class PatientsState {
   constructor(private readonly ds: DataService) {}
   ngxsOnInit({ dispatch }: StateContext<PatientsStateModel>) {
-    dispatch(new actions.AllPatients());
+    // dispatch(new actions.AllPatients());
   }
 
   // All
@@ -76,5 +79,27 @@ export class PatientsState {
     { payload }: actions.DestroyPatient
   ) {
     return this.ds.destroy$<Patient>('patients', payload);
+  }
+
+  // Query patients
+  @Action(actions.QueryPatients)
+  query(
+    { patchState, dispatch }: StateContext<PatientsStateModel>,
+    { payload }: actions.QueryPatients
+  ) {
+    patchState({ loading: true });
+    console.log('Called');
+    return this.ds.query$<Patient>('patients', payload).pipe(
+      debounceTime(300),
+      tap(p => dispatch(new actions.QueryPatientsSuccess(p)))
+    );
+  }
+
+  @Action(actions.QueryPatientsSuccess)
+  querySuccess(
+    { patchState }: StateContext<PatientsStateModel>,
+    { payload }: actions.QueryPatientsSuccess
+  ) {
+    return patchState({ queryResult: payload });
   }
 }

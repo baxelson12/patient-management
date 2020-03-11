@@ -49,3 +49,13 @@ export class DestroyPatientSuccess {
   static readonly type = '[Patients API] Destroy patient success';
   constructor(public payload: Patient) {}
 }
+
+// Query result
+export class QueryPatients {
+  static readonly type = '[Patients API] Query patients';
+  constructor(public payload: string) {}
+}
+export class QueryPatientsSuccess {
+  static readonly type = '[Patients API] Query patients success';
+  constructor(public payload: Patient[]) {}
+}

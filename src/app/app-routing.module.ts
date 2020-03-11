@@ -12,7 +12,8 @@ const routes: Routes = [
     component: StandardComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: ':id', component: EditorComponent }
+      { path: 'edit', component: EditorComponent },
+      { path: 'edit/:id', component: EditorComponent }
     ]
   },
   { path: '', redirectTo: '/patients', pathMatch: 'full' }

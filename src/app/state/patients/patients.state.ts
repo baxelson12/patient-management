@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class PatientsStateModel {
   public loading: boolean;
   public patients: Patient[];
-  public selected: Patient | {};
+  public selected: Partial<Patient>;
 }
 
 @State<PatientsStateModel>({

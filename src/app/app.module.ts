@@ -17,9 +17,11 @@ import { environment } from '../environments/environment';
 // App
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavComponent } from './components/nav/nav.component';
+import { MetricComponent } from './components/metric/metric.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavComponent, MetricComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

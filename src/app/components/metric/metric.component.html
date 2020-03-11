@@ -1,0 +1,17 @@
+<div [ngClass]="definedBg + ' ' + definedBorder" class="border-b-4 rounded-lg  p-5">
+  <div class="flex flex-row items-center">
+    <div class="flex-shrink pr-4">
+      <div [ngClass]="definedIcon" class="rounded-full p-5">
+        <i class="fa fa-wallet fa-2x fa-inverse"></i>
+      </div>
+    </div>
+    <div class="flex-1 text-right md:text-center">
+      <h5 class="font-bold uppercase text-gray-600">
+        <ng-content select="[metric-title]"></ng-content>
+      </h5>
+      <h3 class="font-bold text-3xl">
+        <ng-content></ng-content>
+      </h3>
+    </div>
+  </div>
+</div>

@@ -44,8 +44,9 @@
     <div>
       <span class="text-xl font-bold">Patient Management</span>
     </div>
-    <div class="w-1/3">
+    <div class="relative w-1/3">
       <div
+        [formGroup]="searchForm"
         class="flex items-center bg-gray-800 focus-within:bg-gray-700 rounded py-1 px-3"
       >
         <svg
@@ -58,10 +59,38 @@
           ></path>
         </svg>
         <input
+          formControlName="query"
+          (focus)="searching = true"
+          (blur)="searching = false"
+          (search)="submit()"
           class="appearance-none bg-transparent flex-grow focus:outline-none"
           type="search"
           placeholder="Search"
         />
+      </div>
+      <div
+        class="absolute w-full left-0 mt-2 bg-gray-100 rounded-lg shadow-md overflow-hidden"
+        *ngIf="searching"
+      >
+        <a
+          href="#"
+          class="border-b border-gray-300 block px-3 py-2 text-gray-800 hover:bg-indigo-500 group hover:text-white"
+        >
+          <i
+            class="fas fa-user-plus w-4 h-4 mr-2 text-indigo-500 group-hover:text-white"
+          ></i>
+          Add new patient</a
+        >
+        <a
+          href="#"
+          *ngFor="let patient of query$ | async"
+          class="block px-3 py-2 text-gray-800 hover:bg-indigo-500 group hover:text-white"
+        >
+          <i
+            class="fas fa-user w-4 h-4 mr-2 text-indigo-500 group-hover:text-white"
+          ></i>
+          {{ patient.name.last }}, {{ patient.name.first }}
+        </a>
       </div>
     </div>
     <div>

@@ -10,6 +10,35 @@ import 'firebase/firestore';
 export class DataService {
   constructor(private fs: AngularFirestore) {}
 
+  private titleCase(str) {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(' ');
+  }
+
+  // Querying
+  query$<T>(collection: string, q: string): Observable<T[]> {
+    return this.fs
+      .collection<T>(collection, ref =>
+        ref
+          .where('name.last', '>=', this.titleCase(q))
+          .where('name.last', '<=', this.titleCase(q) + 'z')
+      )
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(action => {
+            const id = action.payload.doc.id;
+            return { id, ...action.payload.doc.data() } as T;
+          })
+        )
+      );
+  }
+
   // All
   all$<T>(collection: string): Observable<T[]> {
     return this.fs

@@ -19,9 +19,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MetricComponent } from './components/metric/metric.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, MetricComponent],
+  declarations: [AppComponent, NavComponent, MetricComponent, CardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

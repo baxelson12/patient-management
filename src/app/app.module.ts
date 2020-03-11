@@ -20,9 +20,10 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MetricComponent } from './components/metric/metric.component';
 import { CardComponent } from './components/card/card.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, MetricComponent, CardComponent],
+  declarations: [AppComponent, NavComponent, MetricComponent, CardComponent, SidebarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

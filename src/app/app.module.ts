@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { PatientsState } from './state/patients/patients.state';
 
 // Firebase
@@ -23,7 +24,13 @@ import { CardComponent } from './components/card/card.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, MetricComponent, CardComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    MetricComponent,
+    CardComponent,
+    SidebarComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,7 +40,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NgxsModule.forRoot([PatientsState], {
       developmentMode: !environment.production
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

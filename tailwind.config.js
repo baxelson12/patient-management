@@ -3,7 +3,7 @@ module.exports = {
     extend: {}
   },
   variants: {
-    backgroundColor: ['focus-within']
+    backgroundColor: ['focus-within', 'hover']
   },
   plugins: []
 };

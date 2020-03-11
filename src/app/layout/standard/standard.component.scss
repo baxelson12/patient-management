@@ -1,0 +1,23 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  grid-template-columns: 1fr 8fr;
+  grid-template-areas:
+    'nav nav'
+    'sidebar main';
+}
+
+.main {
+  grid-area: main;
+  overflow: auto;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}

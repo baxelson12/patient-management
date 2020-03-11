@@ -1,1 +1,76 @@
-<p>editor works!</p>
+<form
+  [formGroup]="patient"
+  ngxsForm="patients.selected"
+  (ngSubmit)="submit()"
+>
+  <div formGroupName="name">
+    <h3>Name</h3>
+    <label class="mb-2">
+      First:
+      <input type="text" formControlName="first" />
+    </label>
+    <label class="mb-2">
+      Middle:
+      <input type="text" formControlName="middle" />
+    </label>
+    <label class="mb-2">
+      Last:
+      <input type="text" formControlName="last" />
+    </label>
+  </div>
+  <label class="mb-2">
+    Date of Birth:
+    <input type="date" formControlName="dob" />
+  </label>
+  <label class="mb-2">
+    Email:
+    <input type="email" formControlName="email" />
+  </label>
+  <label class="mb-2">
+    Phone:
+    <input
+      type="tel"
+      pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+      formControlName="phone"
+    />
+  </label>
+  <div formGroupName="address">
+    <label class="mb-2">
+      Line 1:
+      <input type="text" formControlName="line_1" />
+    </label>
+    <label class="mb-2">
+      Line 2:
+      <input type="text" formControlName="line_2" />
+    </label>
+    <label class="mb-2">
+      City:
+      <input type="text" formControlName="city" />
+    </label>
+    <label class="mb-2">
+      State:
+      <input type="text" formControlName="state" />
+    </label>
+    <label class="mb-2">
+      Zip:
+      <input type="text" pattern="[0-9]{5}" formControlName="zip" />
+    </label>
+  </div>
+  <label class="mb-2">
+    Gender:
+    <input type="text" formControlName="gender" />
+  </label>
+  <label class="mb-2">
+    Insurance:
+    <input type="text" formControlName="insurance" />
+  </label>
+  <label class="mb-2">
+    Last Exam:
+    <input type="text" formControlName="last_exam" />
+  </label>
+  <label class="mb-2">
+    Notes:
+    <input type="text" formControlName="notes" />
+  </label>
+  <button type="submit">Submit</button>
+</form>

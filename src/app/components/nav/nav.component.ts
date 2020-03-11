@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  dw = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
+  ngOnInit(): void {}
 }

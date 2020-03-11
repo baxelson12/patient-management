@@ -61,7 +61,7 @@
         <input
           formControlName="query"
           (focus)="searching = true"
-          (blur)="searching = false"
+          (blur)="clear()"
           (search)="submit()"
           class="appearance-none bg-transparent flex-grow focus:outline-none"
           type="search"

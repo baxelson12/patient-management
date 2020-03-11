@@ -88,8 +88,12 @@ export class PatientsState {
     { payload }: actions.QueryPatients
   ) {
     patchState({ loading: true });
-    console.log('Called');
-    return this.ds.query$<Patient>('patients', payload).pipe(
+    console.log(payload.length);
+    return iif(
+      () => payload.length > 3,
+      this.ds.query$<Patient>('patients', payload),
+      of(null)
+    ).pipe(
       debounceTime(300),
       tap(p => dispatch(new actions.QueryPatientsSuccess(p)))
     );

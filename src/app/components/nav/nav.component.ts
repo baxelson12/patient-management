@@ -26,6 +26,11 @@ export class NavComponent implements OnInit {
     console.log(q);
     this.store.dispatch(new actions.QueryPatients(q));
   }
+  clear() {
+    this.searchForm.reset();
+    this.searching = false;
+    this.store.dispatch(new actions.QueryPatients(''));
+  }
   constructor(private readonly store: Store) {}
   ngOnInit(): void {}
 }

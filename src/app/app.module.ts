@@ -24,6 +24,7 @@ import { CardComponent } from './components/card/card.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EditorComponent } from './pages/editor/editor.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { EditorComponent } from './pages/editor/editor.component';
     CardComponent,
     SidebarComponent,
     DashboardComponent,
-    EditorComponent
+    EditorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

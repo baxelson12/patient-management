@@ -22,6 +22,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { MetricComponent } from './components/metric/metric.component';
 import { CardComponent } from './components/card/card.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { EditorComponent } from './pages/editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NavComponent,
     MetricComponent,
     CardComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,

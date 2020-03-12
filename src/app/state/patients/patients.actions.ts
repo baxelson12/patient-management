@@ -23,7 +23,7 @@ export class CreatePatientSuccess {
 // Read
 export class ReadPatient {
   static readonly type = '[Patients API] Read patient';
-  constructor(public payload: Patient) {}
+  constructor(public payload: string) {}
 }
 export class ReadPatientSuccess {
   static readonly type = '[Patients API] Read patient success';
@@ -58,4 +58,10 @@ export class QueryPatients {
 export class QueryPatientsSuccess {
   static readonly type = '[Patients API] Query patients success';
   constructor(public payload: Patient[]) {}
+}
+
+// Select
+export class SelectPatient {
+  static readonly type = '[Patients API] Select patient';
+  constructor(public payload: Patient) {}
 }

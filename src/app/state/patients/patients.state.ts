@@ -5,11 +5,14 @@ import { DataService } from 'src/app/data.service';
 import { tap, debounceTime, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { iif, of } from 'rxjs';
+import { UpdateFormValue } from '@ngxs/form-plugin';
 
 export class PatientsStateModel {
   public loading: boolean;
   public patients: Patient[];
-  public selected: Partial<Patient>;
+  public selected: {
+    model: Patient;
+  };
   public queryResult: Patient[];
 }
 
@@ -18,7 +21,9 @@ export class PatientsStateModel {
   defaults: {
     loading: false,
     patients: [],
-    selected: {},
+    selected: {
+      model: undefined
+    },
     queryResult: []
   }
 })
@@ -57,10 +62,21 @@ export class PatientsState {
   // Read
   @Action(actions.ReadPatient)
   read(
-    { patchState }: StateContext<PatientsStateModel>,
+    { dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.ReadPatient
   ) {
-    return patchState({ selected: payload });
+    return this.ds
+      .read$<Patient>('patients', payload)
+      .pipe(
+        tap(p =>
+          dispatch(
+            new UpdateFormValue({
+              path: 'patients.selected',
+              value: p
+            })
+          )
+        )
+      );
   }
 
   // Update
@@ -98,7 +114,6 @@ export class PatientsState {
       tap(p => dispatch(new actions.QueryPatientsSuccess(p)))
     );
   }
-
   @Action(actions.QueryPatientsSuccess)
   querySuccess(
     { patchState }: StateContext<PatientsStateModel>,

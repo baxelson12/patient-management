@@ -69,6 +69,19 @@ export class DataService {
     );
   }
 
+  // Read
+  read$<T>(collection: string, id: string): Observable<T> {
+    return this.fs
+      .collection<T>(collection)
+      .doc<T>(id)
+      .snapshotChanges()
+      .pipe(
+        map(doc => {
+          return { id, ...doc.payload.data() } as T;
+        })
+      );
+  }
+
   // Update
   update$<T>(collection: string, obj: T): Observable<T> {
     return from(

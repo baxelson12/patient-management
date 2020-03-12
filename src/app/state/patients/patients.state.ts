@@ -65,18 +65,16 @@ export class PatientsState {
     { dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.ReadPatient
   ) {
-    return this.ds
-      .read$<Patient>('patients', payload)
-      .pipe(
-        tap(p =>
-          dispatch(
-            new UpdateFormValue({
-              path: 'patients.selected',
-              value: p
-            })
-          )
+    return this.ds.read$<Patient>('patients', payload).pipe(
+      tap(p =>
+        dispatch(
+          new UpdateFormValue({
+            path: 'patients.selected',
+            value: p
+          })
         )
-      );
+      )
+    );
   }
 
   // Update
@@ -106,7 +104,7 @@ export class PatientsState {
     patchState({ loading: true });
     console.log(payload.length);
     return iif(
-      () => payload.length > 3,
+      () => payload.length > 0,
       this.ds.query$<Patient>('patients', payload),
       of(null)
     ).pipe(

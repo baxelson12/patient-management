@@ -4,6 +4,8 @@ import { Patient } from 'src/app/models/patient';
 import { Store, Select } from '@ngxs/store';
 import * as actions from 'src/app/state/patients/patients.actions';
 import { Observable } from 'rxjs';
+import { UpdateFormValue } from '@ngxs/form-plugin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -31,6 +33,21 @@ export class NavComponent implements OnInit {
     this.searching = false;
     this.store.dispatch(new actions.QueryPatients(''));
   }
-  constructor(private readonly store: Store) {}
+  select(patient: Patient) {
+    this.searching = false;
+    this.router.navigate(['/patients/edit', patient.id]);
+  }
+  create() {
+    this.searching = false;
+    this.router.navigate(['/patients/edit']);
+  }
+
+  test() {
+    console.log('clicked!');
+  }
+  constructor(
+    private readonly store: Store,
+    private router: Router
+  ) {}
   ngOnInit(): void {}
 }

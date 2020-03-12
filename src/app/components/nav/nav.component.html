@@ -73,7 +73,7 @@
         *ngIf="searching"
       >
         <a
-          href="#"
+          (mousedown)="create()"
           class="border-b border-gray-300 block px-3 py-2 text-gray-800 hover:bg-indigo-500 group hover:text-white"
         >
           <i
@@ -82,7 +82,7 @@
           Add new patient</a
         >
         <a
-          href="#"
+          (mousedown)="select(patient)"
           *ngFor="let patient of query$ | async"
           class="block px-3 py-2 text-gray-800 hover:bg-indigo-500 group hover:text-white"
         >

@@ -6,7 +6,7 @@
   [formGroup]="patient"
   ngxsForm="patients.selected"
   (ngSubmit)="submit()"
-  class="w-full lg:w-1/2 mx-auto px-4 py-6"
+  class="w-full xl:w-2/3 mx-auto px-4 py-6"
 >
   <app-card>
     <h1 card-title>New Patient</h1>
@@ -20,7 +20,7 @@
             placeholder="John"
             formControlName="first"
           />
-          <span class="text-xs text-gray-700">First Name</span>
+          <span class="text-xs text-gray-700 ml-4">First Name</span>
         </label>
         <label class="mx-4 flex flex-col flex-shrink">
           <input
@@ -29,7 +29,7 @@
             placeholder="W"
             formControlName="middle"
           />
-          <span class="text-xs text-gray-700">M.I.</span>
+          <span class="text-xs text-gray-700 ml-4">M.I.</span>
         </label>
         <label class="flex flex-col flex-grow">
           <input
@@ -38,7 +38,7 @@
             formControlName="last"
             class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           />
-          <span class="text-xs text-gray-700">Last Name</span>
+          <span class="text-xs text-gray-700 ml-4">Last Name</span>
         </label>
       </div>
     </div>
@@ -50,7 +50,7 @@
           style="padding-bottom: 1.5px;"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
         />
-        <span class="text-xs text-gray-700">Date of Birth</span>
+        <span class="text-xs text-gray-700 ml-4">Date of Birth</span>
       </label>
       <label class="flex flex-col flex-shrink">
         <input
@@ -58,7 +58,7 @@
           formControlName="gender"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
         />
-        <span class="text-xs text-gray-700">Gender</span>
+        <span class="text-xs text-gray-700 ml-4">Gender</span>
       </label>
     </div>
     <div class="flex mb-10">
@@ -69,7 +69,7 @@
           formControlName="email"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
         />
-        <span class="text-xs text-gray-700">Email</span>
+        <span class="text-xs text-gray-700 ml-4">Email</span>
       </label>
       <label class="flex flex-col flex-grow">
         <input
@@ -79,7 +79,7 @@
           pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           formControlName="phone"
         />
-        <span class="text-xs text-gray-700">Phone</span>
+        <span class="text-xs text-gray-700 ml-4">Phone</span>
       </label>
     </div>
 
@@ -92,7 +92,7 @@
             formControlName="line_1"
             class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           />
-          <span class="text-xs text-gray-700">Line 1</span>
+          <span class="text-xs text-gray-700 ml-4">Line 1</span>
         </label>
         <label class="flex flex-col flex-grow">
           <input
@@ -101,7 +101,7 @@
             formControlName="line_2"
             class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           />
-          <span class="text-xs text-gray-700">Line 2</span>
+          <span class="text-xs text-gray-700 ml-4">Line 2</span>
         </label>
       </div>
       <div class="flex mb-10">
@@ -112,7 +112,7 @@
             formControlName="city"
             class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           />
-          <span class="text-xs text-gray-700">City</span>
+          <span class="text-xs text-gray-700 ml-4">City</span>
         </label>
         <label class="flex flex-col mx-4 flex-shrink">
           <input
@@ -121,7 +121,7 @@
             placeholder="NY"
             formControlName="state"
           />
-          <span class="text-xs text-gray-700">State</span>
+          <span class="text-xs text-gray-700 ml-4">State</span>
         </label>
         <label class="flex flex-col flex-grow">
           <input
@@ -131,7 +131,7 @@
             formControlName="zip"
             class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           />
-          <span class="text-xs text-gray-700">Zip Code</span>
+          <span class="text-xs text-gray-700 ml-4">Zip Code</span>
         </label>
       </div>
     </div>
@@ -144,7 +144,7 @@
           formControlName="insurance"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
         />
-        <span class="text-xs text-gray-700">Insurance</span>
+        <span class="text-xs text-gray-700 ml-4">Insurance</span>
       </label>
       <label class="flex flex-col flex-grow">
         <input
@@ -153,7 +153,7 @@
           formControlName="last_exam"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
         />
-        <span class="text-xs text-gray-700">Last Exam</span>
+        <span class="text-xs text-gray-700 ml-4">Last Exam</span>
       </label>
     </div>
     <label class="flex flex-col mb-6">
@@ -162,7 +162,7 @@
         placeholder="Something meaningful..."
         class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
       ></textarea>
-      <span class="text-xs text-gray-700">Notes</span>
+      <span class="text-xs text-gray-700 ml-4">Notes</span>
     </label>
     <div class="flex">
       <button

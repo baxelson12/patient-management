@@ -3,6 +3,11 @@ import { FormGroup, FormControl } from '@angular/forms';
 import * as actions from '../../state/patients/patients.actions';
 import { Patient } from 'src/app/models/patient';
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { switchMap, tap } from 'rxjs/operators';
+import { DataService } from 'src/app/data.service';
+import { UpdateFormValue } from '@ngxs/form-plugin';
 
 @Component({
   selector: 'app-editor',
@@ -32,9 +37,31 @@ export class EditorComponent implements OnInit {
     notes: new FormControl()
   });
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private route: ActivatedRoute,
+    private router: Router,
+    private ds: DataService
+  ) {}
 
-  ngOnInit(): void {}
+  routemon: Observable<ParamMap> = this.route.paramMap;
+  // Watch routes if id exists, populate form
+  ngOnInit() {
+    this.routemon.subscribe(params => {
+      if (params.get('id')) {
+        this.store.dispatch(
+          new actions.ReadPatient(params.get('id'))
+        );
+      } else {
+        this.store.dispatch(
+          new UpdateFormValue({
+            path: 'patients.selected',
+            value: {}
+          })
+        );
+      }
+    });
+  }
 
   delete(patient: Patient) {
     console.log(patient);

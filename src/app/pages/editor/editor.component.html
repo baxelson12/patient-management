@@ -1,76 +1,181 @@
+<div class="bg-blue-800 p-2 shadow text-xl text-white">
+  <h3 class="font-bold pl-2">Patient Editor</h3>
+</div>
+
 <form
   [formGroup]="patient"
   ngxsForm="patients.selected"
   (ngSubmit)="submit()"
+  class="w-full lg:w-1/2 mx-auto px-4 py-6"
 >
-  <div formGroupName="name">
-    <h3>Name</h3>
-    <label class="mb-2">
-      First:
-      <input type="text" formControlName="first" />
+  <app-card>
+    <h1 card-title>New Patient</h1>
+    <div class="mb-5" formGroupName="name">
+      <!-- <h3 class="text-lg mb-2">Name</h3> -->
+      <div class="flex">
+        <label class="flex flex-col flex-grow">
+          <input
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+            type="text"
+            placeholder="John"
+            formControlName="first"
+          />
+          <span class="text-xs text-gray-700">First Name</span>
+        </label>
+        <label class="mx-4 flex flex-col flex-shrink">
+          <input
+            class="w-full appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+            type="text"
+            placeholder="W"
+            formControlName="middle"
+          />
+          <span class="text-xs text-gray-700">M.I.</span>
+        </label>
+        <label class="flex flex-col flex-grow">
+          <input
+            type="text"
+            placeholder="Doe"
+            formControlName="last"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          />
+          <span class="text-xs text-gray-700">Last Name</span>
+        </label>
+      </div>
+    </div>
+    <div class="flex mb-5">
+      <label class="mr-4 flex flex-col flex-shrink">
+        <input
+          type="date"
+          formControlName="dob"
+          style="padding-bottom: 1.5px;"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+        />
+        <span class="text-xs text-gray-700">Date of Birth</span>
+      </label>
+      <label class="flex flex-col flex-shrink">
+        <input
+          type="text"
+          formControlName="gender"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+        />
+        <span class="text-xs text-gray-700">Gender</span>
+      </label>
+    </div>
+    <div class="flex mb-10">
+      <label class="mr-4 flex flex-col flex-grow">
+        <input
+          type="email"
+          placeholder="jdoe@example.com"
+          formControlName="email"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+        />
+        <span class="text-xs text-gray-700">Email</span>
+      </label>
+      <label class="flex flex-col flex-grow">
+        <input
+          type="tel"
+          placeholder="2487779948"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+          formControlName="phone"
+        />
+        <span class="text-xs text-gray-700">Phone</span>
+      </label>
+    </div>
+
+    <div formGroupName="address">
+      <div class="flex mb-5">
+        <label class="mr-4 flex flex-col flex-grow">
+          <input
+            type="text"
+            placeholder="1452 Right Way"
+            formControlName="line_1"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          />
+          <span class="text-xs text-gray-700">Line 1</span>
+        </label>
+        <label class="flex flex-col flex-grow">
+          <input
+            type="text"
+            placeholder="Apt. #5"
+            formControlName="line_2"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          />
+          <span class="text-xs text-gray-700">Line 2</span>
+        </label>
+      </div>
+      <div class="flex mb-10">
+        <label class="flex flex-col flex-grow">
+          <input
+            type="text"
+            placeholder="Yorkshire"
+            formControlName="city"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          />
+          <span class="text-xs text-gray-700">City</span>
+        </label>
+        <label class="flex flex-col mx-4 flex-shrink">
+          <input
+            class="w-full appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+            type="text"
+            placeholder="NY"
+            formControlName="state"
+          />
+          <span class="text-xs text-gray-700">State</span>
+        </label>
+        <label class="flex flex-col flex-grow">
+          <input
+            type="text"
+            placeholder="44864"
+            pattern="[0-9]{5}"
+            formControlName="zip"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          />
+          <span class="text-xs text-gray-700">Zip Code</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="flex mb-6">
+      <label class="flex flex-col mr-4 flex-grow">
+        <input
+          type="text"
+          placeholder="Blue Care Network"
+          formControlName="insurance"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+        />
+        <span class="text-xs text-gray-700">Insurance</span>
+      </label>
+      <label class="flex flex-col flex-grow">
+        <input
+          type="date"
+          style="padding-bottom: 1.5px;"
+          formControlName="last_exam"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+        />
+        <span class="text-xs text-gray-700">Last Exam</span>
+      </label>
+    </div>
+    <label class="flex flex-col mb-6">
+      <textarea
+        formControlName="notes"
+        placeholder="Something meaningful..."
+        class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+      ></textarea>
+      <span class="text-xs text-gray-700">Notes</span>
     </label>
-    <label class="mb-2">
-      Middle:
-      <input type="text" formControlName="middle" />
-    </label>
-    <label class="mb-2">
-      Last:
-      <input type="text" formControlName="last" />
-    </label>
-  </div>
-  <label class="mb-2">
-    Date of Birth:
-    <input type="date" formControlName="dob" />
-  </label>
-  <label class="mb-2">
-    Email:
-    <input type="email" formControlName="email" />
-  </label>
-  <label class="mb-2">
-    Phone:
-    <input
-      type="tel"
-      pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-      formControlName="phone"
-    />
-  </label>
-  <div formGroupName="address">
-    <label class="mb-2">
-      Line 1:
-      <input type="text" formControlName="line_1" />
-    </label>
-    <label class="mb-2">
-      Line 2:
-      <input type="text" formControlName="line_2" />
-    </label>
-    <label class="mb-2">
-      City:
-      <input type="text" formControlName="city" />
-    </label>
-    <label class="mb-2">
-      State:
-      <input type="text" formControlName="state" />
-    </label>
-    <label class="mb-2">
-      Zip:
-      <input type="text" pattern="[0-9]{5}" formControlName="zip" />
-    </label>
-  </div>
-  <label class="mb-2">
-    Gender:
-    <input type="text" formControlName="gender" />
-  </label>
-  <label class="mb-2">
-    Insurance:
-    <input type="text" formControlName="insurance" />
-  </label>
-  <label class="mb-2">
-    Last Exam:
-    <input type="text" formControlName="last_exam" />
-  </label>
-  <label class="mb-2">
-    Notes:
-    <input type="text" formControlName="notes" />
-  </label>
-  <button type="submit">Submit</button>
+    <div class="flex">
+      <button
+        type="submit"
+        class="mr-2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"
+      >
+        Submit
+      </button>
+      <button
+        class="bg-orange-500 hover:bg-orange-400 text-white font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded"
+      >
+        Reset
+      </button>
+    </div>
+  </app-card>
 </form>

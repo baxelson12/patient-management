@@ -53,11 +53,29 @@
         <span class="text-xs text-gray-700 ml-4">Date of Birth</span>
       </label>
       <label class="flex flex-col flex-shrink">
-        <input
-          type="text"
-          formControlName="gender"
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-        />
+        <div class="relative">
+          <select
+            formControlName="gender"
+            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 pr-8 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          >
+            <option value="">--Select an option--</option>
+            <option value="true">Male</option>
+            <option value="false">Female</option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+              />
+            </svg>
+          </div>
+        </div>
         <span class="text-xs text-gray-700 ml-4">Gender</span>
       </label>
     </div>

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { DateTime } from 'luxon';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase/app';
 import 'firebase/firestore';
 import { Patient } from './models/patient';
 
@@ -58,15 +59,22 @@ export class DataService {
 
   // Create
   create$<T>(collection: string, obj: T): Observable<T> {
+    const increment = firestore.FieldValue.increment(1);
     const id: string = this.fs.createId();
     return from(
-      this.fs
-        .collection<T>(collection)
-        .doc(id)
-        .set(obj)
+      this.fs.doc('analytics/patients').update({ count: increment })
     ).pipe(
-      map(() => {
-        return { id, ...obj } as T;
+      switchMap(() => {
+        return from(
+          this.fs
+            .collection<T>(collection)
+            .doc(id)
+            .set(obj)
+        ).pipe(
+          map(() => {
+            return { id, ...obj } as T;
+          })
+        );
       })
     );
   }

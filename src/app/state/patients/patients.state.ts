@@ -10,6 +10,8 @@ import { UpdateFormValue } from '@ngxs/form-plugin';
 export class PatientsStateModel {
   public loading: boolean;
   public patients: Patient[];
+  public count: number;
+  public uninsured: number;
   public selected: {
     model: Patient;
   };
@@ -21,6 +23,8 @@ export class PatientsStateModel {
   defaults: {
     loading: false,
     patients: [],
+    count: 0,
+    uninsured: 0,
     selected: {
       model: undefined
     },
@@ -65,14 +69,15 @@ export class PatientsState {
     { getState, dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.ReadPatient
   ) {
-    const patient = getState().queryResult.find(
-      p => p.id === payload
-    );
-    return dispatch(
-      new UpdateFormValue({
-        path: 'patients.selected',
-        value: patient
-      })
+    return this.ds.read$<Patient>('patients', payload).pipe(
+      tap(p =>
+        dispatch(
+          new UpdateFormValue({
+            path: 'patients.selected',
+            value: p
+          })
+        )
+      )
     );
   }
 
@@ -117,5 +122,28 @@ export class PatientsState {
     { payload }: actions.QueryPatientsSuccess
   ) {
     return patchState({ queryResult: payload });
+  }
+
+  // Get analytics
+  @Action(actions.GetAnalytics)
+  analytics({ dispatch }: StateContext<PatientsStateModel>) {
+    console.log('Firing');
+    return this.ds
+      .read$<{ id: string; count: number; uninsured: number }>(
+        'analytics',
+        'patients'
+      )
+      .pipe(tap(p => dispatch(new actions.GetAnalyticsSuccess(p))));
+  }
+  @Action(actions.GetAnalyticsSuccess)
+  analyticsSuccess(
+    { patchState }: StateContext<PatientsStateModel>,
+    { payload }: actions.GetAnalyticsSuccess
+  ) {
+    console.log('Analytic', payload);
+    return patchState({
+      count: payload.count,
+      uninsured: payload.uninsured
+    });
   }
 }

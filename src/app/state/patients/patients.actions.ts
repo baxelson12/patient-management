@@ -65,3 +65,15 @@ export class SelectPatient {
   static readonly type = '[Patients API] Select patient';
   constructor(public payload: Patient) {}
 }
+
+// Analytics
+export class GetAnalytics {
+  static readonly type = '[Patients API] Load analytics';
+  constructor() {}
+}
+export class GetAnalyticsSuccess {
+  static readonly type = '[Patients API] Load analytics success';
+  constructor(
+    public payload: { id: string; count: number; uninsured: number }
+  ) {}
+}

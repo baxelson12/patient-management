@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
@@ -9,13 +9,12 @@ import { Navigate } from '@ngxs/router-plugin';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   sub: Subscription;
   constructor(
     private as: AuthService,
     private readonly store: Store
   ) {}
-  ngOnInit(): void {}
 
   login() {
     this.as

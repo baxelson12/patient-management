@@ -3,8 +3,8 @@ import * as actions from '../../state/patients/patients.actions';
 import { DateTime } from 'luxon';
 import { Store, Select } from '@ngxs/store';
 import { Patient } from 'src/app/models/patient';
-import { Observable, Subscription } from 'rxjs';
-import { map, tap, filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DataService } from 'src/app/data.service';
 
 @Component({

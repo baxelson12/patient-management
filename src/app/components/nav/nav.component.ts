@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Patient } from 'src/app/models/patient';
 import { Store, Select } from '@ngxs/store';
 import * as actions from 'src/app/state/patients/patients.actions';
 import { Observable } from 'rxjs';
-import { UpdateFormValue } from '@ngxs/form-plugin';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/auth.service';
-import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
   dw = false;
   searching = false;
   @Select(state => state.patients.queryResult) query$: Observable<
@@ -54,5 +52,4 @@ export class NavComponent implements OnInit {
     private router: Router,
     public auth: AngularFireAuth
   ) {}
-  ngOnInit(): void {}
 }

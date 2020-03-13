@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /*
   Usage:
@@ -16,7 +16,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './metric.component.html',
   styleUrls: ['./metric.component.scss']
 })
-export class MetricComponent implements OnInit {
+export class MetricComponent {
   @Input() color: string;
   @Input() icon: string;
 
@@ -32,7 +32,4 @@ export class MetricComponent implements OnInit {
   get definedIcon() {
     return 'fa-' + this.icon;
   }
-
-  constructor() {}
-  ngOnInit(): void {}
 }

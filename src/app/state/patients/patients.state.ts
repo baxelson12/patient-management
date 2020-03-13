@@ -1,9 +1,9 @@
-import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
+import { State, Action, StateContext } from '@ngxs/store';
 import { Guid } from 'guid-typescript';
 import * as actions from './patients.actions';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/data.service';
-import { tap, debounceTime, switchMap } from 'rxjs/operators';
+import { tap, debounceTime } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { iif, of } from 'rxjs';
 import { UpdateFormValue } from '@ngxs/form-plugin';
@@ -38,9 +38,6 @@ export class PatientsStateModel {
 @Injectable({ providedIn: 'root' })
 export class PatientsState {
   constructor(private readonly ds: DataService) {}
-  ngxsOnInit({ dispatch }: StateContext<PatientsStateModel>) {
-    // dispatch(new actions.AllPatients());
-  }
 
   // All
   @Action(actions.AllPatients)

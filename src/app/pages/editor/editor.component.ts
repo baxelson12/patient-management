@@ -1,16 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  ValidationErrors
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as actions from '../../state/patients/patients.actions';
-import { Patient } from 'src/app/models/patient';
-import { Store, Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
 import { DataService } from 'src/app/data.service';
 import { UpdateFormValue } from '@ngxs/form-plugin';
 

@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { DateTime } from 'luxon';
 import { map, switchMap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import 'firebase/firestore';
-import { Patient } from './models/patient';
 
 @Injectable({
   providedIn: 'root'

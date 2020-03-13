@@ -3,10 +3,9 @@ import {
   trigger,
   transition,
   style,
-  animate,
-  state
+  animate
 } from '@angular/animations';
-import { asyncScheduler, asapScheduler } from 'rxjs';
+import { asyncScheduler } from 'rxjs';
 import { Notification } from '../../models/notification';
 import { Store } from '@ngxs/store';
 import { RemoveNotification } from 'src/app/state/app/app.actions';
@@ -40,7 +39,7 @@ export class NotificationComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    asapScheduler.schedule(() => {
+    asyncScheduler.schedule(() => {
       this.open = false;
       this.store.dispatch(new RemoveNotification(this.notification));
     }, this.notification.time);

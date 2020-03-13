@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
     map(store => store.patients.filter((p: Patient) => !p.insurance))
   );
   emails = this.patientsStore.pipe(
-    map(store => store.patients.filter((p: Patient) => p.email))
+    map(store => store.patients.filter((p: Patient) => !p.email))
   );
   uptime = Math.floor(
     DateTime.local()
@@ -35,6 +35,9 @@ export class DashboardComponent implements OnInit {
       .toObject().days
   );
 
+  sample<T>(arr: T[]) {
+    return arr.slice(0, 3);
+  }
   constructor(private store: Store, private ds: DataService) {}
 
   ngOnInit(): void {

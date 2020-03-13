@@ -62,18 +62,17 @@ export class PatientsState {
   // Read
   @Action(actions.ReadPatient)
   read(
-    { dispatch }: StateContext<PatientsStateModel>,
+    { getState, dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.ReadPatient
   ) {
-    return this.ds.read$<Patient>('patients', payload).pipe(
-      tap(p =>
-        dispatch(
-          new UpdateFormValue({
-            path: 'patients.selected',
-            value: p
-          })
-        )
-      )
+    const patient = getState().queryResult.find(
+      p => p.id === payload
+    );
+    return dispatch(
+      new UpdateFormValue({
+        path: 'patients.selected',
+        value: patient
+      })
     );
   }
 

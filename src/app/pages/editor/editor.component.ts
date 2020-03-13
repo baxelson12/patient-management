@@ -42,6 +42,22 @@ export class EditorComponent implements OnInit {
     notes: new FormControl(),
     id: new FormControl()
   });
+  mask = [
+    '(',
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ')',
+    ' ',
+    /\d/,
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
+  ];
 
   constructor(
     private readonly store: Store,

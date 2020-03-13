@@ -24,6 +24,7 @@
     "@ngxs/form-plugin": "^3.6.2",
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
+    "angular2-text-mask": "^9.0.0",
     "firebase": "^7.8.0",
     "guid-typescript": "^1.0.9",
     "luxon": "^1.22.0",

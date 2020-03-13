@@ -101,7 +101,8 @@
       <label class="flex flex-col flex-grow">
         <input
           type="tel"
-          placeholder="2487779948"
+          placeholder="(248) 333-0303"
+          [textMask]="{ mask: mask }"
           class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           formControlName="phone"
           required

@@ -20,6 +20,7 @@ import { environment } from '../environments/environment';
 
 // App
 import { AppRoutingModule } from './app-routing.module';
+import { TextMaskModule } from 'angular2-text-mask';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { MetricComponent } from './components/metric/metric.component';
@@ -49,6 +50,7 @@ import { NotificationComponent } from './components/notification/notification.co
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    TextMaskModule,
     NgxsFormPluginModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     NgxsModule.forRoot([AppState, PatientsState], {

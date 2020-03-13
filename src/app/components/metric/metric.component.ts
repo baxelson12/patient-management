@@ -18,6 +18,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MetricComponent implements OnInit {
   @Input() color: string;
+  @Input() icon: string;
 
   get definedBorder() {
     return 'border-' + this.color + '-600';
@@ -25,8 +26,11 @@ export class MetricComponent implements OnInit {
   get definedBg() {
     return 'bg-' + this.color + '-100';
   }
-  get definedIcon() {
+  get definedIconColor() {
     return 'bg-' + this.color + '-600';
+  }
+  get definedIcon() {
+    return 'fa-' + this.icon;
   }
 
   constructor() {}

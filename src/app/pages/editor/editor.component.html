@@ -9,8 +9,11 @@
   class="w-full xl:w-2/3 mx-auto px-4 py-6"
 >
   <app-card>
-    <h1 card-title>
-      {{ patient.name ? patient.name.last_name : 'New Patient' }}
+    <h1 card-title *ngIf="patient.value.name.last">
+      {{ patient.value.name.last + ', ' + patient.value.name.first }}
+    </h1>
+    <h1 card-title *ngIf="!patient.value.name.last">
+      New Patient
     </h1>
     <fieldset class="mb-5 appearance-none" formGroupName="name">
       <!-- <h3 class="text-lg mb-2">Name</h3> -->

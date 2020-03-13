@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import * as actions from '../../state/patients/patients.actions';
 import { Patient } from 'src/app/models/patient';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class EditorComponent implements OnInit {
   patient = new FormGroup({
     name: new FormGroup({
       first: new FormControl('', Validators.required),
-      middle: new FormControl('', Validators.required),
+      middle: new FormControl(''),
       last: new FormControl('', Validators.required)
     }),
     dob: new FormControl('', Validators.required),
@@ -97,7 +97,9 @@ export class EditorComponent implements OnInit {
     if (!this.patient.valid) {
       this.validateAllFormControl(this.patient);
     } else {
-      console.warn(this.patient);
+      this.store.dispatch(
+        new actions.CreatePatient(this.patient.value)
+      );
     }
   }
 }

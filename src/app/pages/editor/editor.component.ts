@@ -39,7 +39,8 @@ export class EditorComponent implements OnInit {
     gender: new FormControl('', Validators.required),
     insurance: new FormControl(),
     last_exam: new FormControl('', Validators.required),
-    notes: new FormControl()
+    notes: new FormControl(),
+    id: new FormControl()
   });
 
   constructor(
@@ -68,9 +69,10 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  delete(patient: Patient) {
-    console.log(patient);
-    this.store.dispatch(new actions.DestroyPatient(patient));
+  delete() {
+    this.store.dispatch(
+      new actions.DestroyPatient(this.patient.value)
+    );
   }
 
   reset() {

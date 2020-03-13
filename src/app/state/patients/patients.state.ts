@@ -9,6 +9,7 @@ import { iif, of } from 'rxjs';
 import { UpdateFormValue } from '@ngxs/form-plugin';
 import { AddNotification } from '../app/app.actions';
 import { Notification } from '../../models/notification';
+import { Navigate } from '@ngxs/router-plugin';
 
 export class PatientsStateModel {
   public loading: boolean;
@@ -112,10 +113,27 @@ export class PatientsState {
   // Destroy
   @Action(actions.DestroyPatient)
   destroy(
-    ctx: StateContext<PatientsStateModel>,
+    { dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.DestroyPatient
   ) {
-    return this.ds.destroy$<Patient>('patients', payload);
+    const notification: Notification = {
+      id: Guid.raw(),
+      time: 5000,
+      title: 'Success!',
+      message: 'Patient deleted.',
+      status: 'Success'
+    };
+    console.log(payload);
+    return this.ds
+      .destroy$<Patient>('patients', payload)
+      .pipe(
+        tap(() =>
+          dispatch([
+            new Navigate(['/patients']),
+            new AddNotification(notification)
+          ])
+        )
+      );
   }
 
   // Query patients

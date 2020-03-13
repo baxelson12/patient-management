@@ -105,8 +105,10 @@ export class EditorComponent implements OnInit {
   }
 
   submit() {
-    if (!this.patient.valid) {
-      this.validateAllFormControl(this.patient);
+    if (this.patient.value.id) {
+      this.store.dispatch(
+        new actions.UpdatePatient(this.patient.value)
+      );
     } else {
       this.store.dispatch(
         new actions.CreatePatient(this.patient.value)

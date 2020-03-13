@@ -1,20 +1,40 @@
 import { State, Action, StateContext } from '@ngxs/store';
-import { AppAction } from './app.actions';
+import * as actions from './app.actions';
+
+import { Notification } from '../../models/notification';
+import { Injectable } from '@angular/core';
 
 export class AppStateModel {
-  public items: string[];
+  public notifications: Notification[];
 }
 
 @State<AppStateModel>({
   name: 'app',
   defaults: {
-    items: []
+    notifications: []
   }
 })
+@Injectable({ providedIn: 'root' })
 export class AppState {
-  @Action(AppAction)
-  add(ctx: StateContext<AppStateModel>, action: AppAction) {
-    const state = ctx.getState();
-    ctx.setState({ items: [ ...state.items, action.payload ] });
+  @Action(actions.AddNotification)
+  add(
+    { patchState, getState }: StateContext<AppStateModel>,
+    { payload }: actions.AddNotification
+  ) {
+    return patchState({
+      notifications: [...getState().notifications, payload]
+    });
+  }
+
+  @Action(actions.RemoveNotification)
+  remove(
+    { patchState, getState }: StateContext<AppStateModel>,
+    { payload }: actions.RemoveNotification
+  ) {
+    return patchState({
+      notifications: getState().notifications.filter(
+        p => p.id === payload.id
+      )
+    });
   }
 }

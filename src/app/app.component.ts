@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Notification } from './models/notification';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @Select(state => state.app.notifications) notifications: Observable<
+    Notification[]
+  >;
   constructor() {}
 }

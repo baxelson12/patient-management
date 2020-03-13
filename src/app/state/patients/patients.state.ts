@@ -1,4 +1,5 @@
 import { State, Action, StateContext, NgxsOnInit } from '@ngxs/store';
+import { Guid } from 'guid-typescript';
 import * as actions from './patients.actions';
 import { Patient } from 'src/app/models/patient';
 import { DataService } from 'src/app/data.service';
@@ -6,6 +7,8 @@ import { tap, debounceTime, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { iif, of } from 'rxjs';
 import { UpdateFormValue } from '@ngxs/form-plugin';
+import { AddNotification } from '../app/app.actions';
+import { Notification } from '../../models/notification';
 
 export class PatientsStateModel {
   public loading: boolean;
@@ -57,9 +60,17 @@ export class PatientsState {
   // Create
   @Action(actions.CreatePatient)
   create(
-    ctx: StateContext<PatientsStateModel>,
+    { dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.CreatePatient
   ) {
+    const notification: Notification = {
+      id: Guid.raw(),
+      time: 5000,
+      title: 'Success!',
+      message: 'Patient saved.',
+      status: 'Success'
+    };
+    dispatch(new AddNotification(notification));
     return this.ds.create$<Patient>('patients', payload);
   }
 
@@ -84,9 +95,17 @@ export class PatientsState {
   // Update
   @Action(actions.UpdatePatient)
   update(
-    ctx: StateContext<PatientsStateModel>,
+    { dispatch }: StateContext<PatientsStateModel>,
     { payload }: actions.UpdatePatient
   ) {
+    const notification: Notification = {
+      id: Guid.raw(),
+      time: 5000,
+      title: 'Success!',
+      message: 'Patient updated.',
+      status: 'Success'
+    };
+    dispatch(new AddNotification(notification));
     return this.ds.update$<Patient>('patients', payload);
   }
 

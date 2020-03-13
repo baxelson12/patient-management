@@ -99,7 +99,7 @@
           <span class="mr-3"><i class="em em-robot_face"></i></span>
           <div class="relative">
             <button (click)="dw = !dw" (blur)="dw = false">
-              <span>Hello, User</span>
+              <span>{{ (auth.user | async)?.displayName }}</span>
               <span class="ml-2">
                 <svg
                   class="h-3 fill-current inline"
@@ -117,17 +117,7 @@
               *ngIf="dw"
             >
               <a
-                href="#"
-                class="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                >Account settings</a
-              >
-              <a
-                href="#"
-                class="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                >Support</a
-              >
-              <a
-                href="#"
+                (mousedown)="signOut()"
                 class="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
                 >Sign out</a
               >

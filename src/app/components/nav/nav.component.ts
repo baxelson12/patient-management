@@ -6,6 +6,9 @@ import * as actions from 'src/app/state/patients/patients.actions';
 import { Observable } from 'rxjs';
 import { UpdateFormValue } from '@ngxs/form-plugin';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from 'src/app/auth.service';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-nav',
@@ -42,12 +45,14 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/patients/edit']);
   }
 
-  test() {
-    console.log('clicked!');
+  signOut() {
+    this.as.logout().then(() => this.router.navigate(['/login']));
   }
   constructor(
     private readonly store: Store,
-    private router: Router
+    private readonly as: AuthService,
+    private router: Router,
+    public auth: AngularFireAuth
   ) {}
   ngOnInit(): void {}
 }

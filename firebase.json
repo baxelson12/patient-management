@@ -1,19 +1,16 @@
 {
-  "hosting": [
-    {
-      "target": "fire-ngxs-patients",
-      "public": "dist/fire-ngxs-patients",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    }
-  ]
+  "hosting": {
+    "public": "dist/fire-ngxs-patients",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }

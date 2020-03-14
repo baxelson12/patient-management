@@ -44,7 +44,10 @@ export class NavComponent {
   }
 
   signOut() {
-    this.as.logout().then(() => this.router.navigate(['/login']));
+    this.as.logout();
+    this.auth.authState.subscribe(x => {
+      this.router.navigate(['/login']);
+    });
   }
   constructor(
     private readonly store: Store,

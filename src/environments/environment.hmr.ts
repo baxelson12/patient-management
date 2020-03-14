@@ -10,5 +10,5 @@ export const environment = {
     appId: '1:586297492987:web:f4070f947d69097671f75e',
     measurementId: 'G-2K2MFL53YH'
   },
-  hmr: true
+  hmr: false
 };

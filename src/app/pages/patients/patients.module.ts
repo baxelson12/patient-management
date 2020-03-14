@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
-import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ComponentsModule } from '../../components/components.module';
@@ -23,8 +22,7 @@ import { PatientsState } from 'src/app/state/patients/patients.state';
     ReactiveFormsModule,
     TextMaskModule,
     ComponentsModule,
-    NgxsModule.forFeature([PatientsState]),
-    NgxsFormPluginModule.forRoot()
+    NgxsModule.forFeature([PatientsState])
   ]
 })
 export class PatientsModule {}

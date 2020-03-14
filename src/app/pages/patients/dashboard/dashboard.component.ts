@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as actions from '../../state/patients/patients.actions';
+import * as actions from '../../../state/patients/patients.actions';
 import { DateTime } from 'luxon';
 import { Store, Select } from '@ngxs/store';
 import { Patient } from 'src/app/models/patient';

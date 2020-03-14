@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as actions from '../../state/patients/patients.actions';
+import * as actions from '../../../state/patients/patients.actions';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';

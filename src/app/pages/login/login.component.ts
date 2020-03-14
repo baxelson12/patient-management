@@ -1,8 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { Subscription } from 'rxjs';
-import { Store } from '@ngxs/store';
-import { Navigate } from '@ngxs/router-plugin';
 import { Router } from '@angular/router';
 
 @Component({

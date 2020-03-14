@@ -22,33 +22,25 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
-import { MetricComponent } from './components/metric/metric.component';
-import { CardComponent } from './components/card/card.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EditorComponent } from './pages/editor/editor.component';
 import { LoginComponent } from './pages/login/login.component';
 import { StandardComponent } from './layout/standard/standard.component';
-import { NotificationComponent } from './components/notification/notification.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    MetricComponent,
-    CardComponent,
-    SidebarComponent,
     DashboardComponent,
     EditorComponent,
     LoginComponent,
-    StandardComponent,
-    NotificationComponent
+    StandardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ComponentsModule,
     ReactiveFormsModule,
     TextMaskModule,
     NgxsFormPluginModule.forRoot(),

@@ -85,7 +85,6 @@ export class EditorComponent implements OnInit {
   }
 
   reset() {
-    console.log('Resetting');
     this.patient.reset();
     this.store.dispatch(
       new UpdateFormValue({ path: 'patients.selected', value: {} })
@@ -96,7 +95,6 @@ export class EditorComponent implements OnInit {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
-        console.log(`${field} ::: `, control.errors);
         control.markAsTouched({ onlySelf: true });
       } else if (control instanceof FormGroup) {
         this.validateAllFormControl(control);

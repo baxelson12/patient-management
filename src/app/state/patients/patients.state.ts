@@ -120,7 +120,6 @@ export class PatientsState {
       message: 'Patient deleted.',
       status: 'Success'
     };
-    console.log(payload);
     return this.ds
       .destroy$<Patient>('patients', payload)
       .pipe(
@@ -140,7 +139,6 @@ export class PatientsState {
     { payload }: actions.QueryPatients
   ) {
     patchState({ loading: true });
-    console.log(payload.length);
     return iif(
       () => payload.length > 0,
       this.ds.query$<Patient>('patients', payload),
@@ -161,7 +159,6 @@ export class PatientsState {
   // Get analytics
   @Action(actions.GetAnalytics)
   analytics({ dispatch }: StateContext<PatientsStateModel>) {
-    console.log('Firing');
     return this.ds
       .read$<{ id: string; count: number; uninsured: number }>(
         'analytics',
@@ -174,7 +171,6 @@ export class PatientsState {
     { patchState }: StateContext<PatientsStateModel>,
     { payload }: actions.GetAnalyticsSuccess
   ) {
-    console.log('Analytic', payload);
     return patchState({
       count: payload.count,
       uninsured: payload.uninsured

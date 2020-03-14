@@ -26,7 +26,6 @@ export class NavComponent {
 
   submit() {
     const q = this.searchForm.value.query;
-    console.log(q);
     this.store.dispatch(new actions.QueryPatients(q));
   }
   clear() {

@@ -16,8 +16,11 @@ export class PatientsStateModel {
   public patients: Patient[];
   public count: number;
   public uninsured: number;
-  public selected: {
+  public patient: {
     model: Patient;
+    dirty: boolean;
+    status: string;
+    errors: any;
   };
   public queryResult: Patient[];
 }
@@ -29,8 +32,11 @@ export class PatientsStateModel {
     patients: [],
     count: 0,
     uninsured: 0,
-    selected: {
-      model: undefined
+    patient: {
+      model: undefined,
+      dirty: false,
+      status: '',
+      errors: {}
     },
     queryResult: []
   }
@@ -79,14 +85,15 @@ export class PatientsState {
     { payload }: actions.ReadPatient
   ) {
     return this.ds.read$<Patient>('patients', payload).pipe(
-      tap(p =>
+      tap(p => {
+        console.log(p);
         dispatch(
           new UpdateFormValue({
-            path: 'patients.selected',
+            path: 'patients.patient',
             value: p
           })
-        )
-      )
+        );
+      })
     );
   }
 

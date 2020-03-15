@@ -9,6 +9,7 @@ import { EditorComponent } from './editor/editor.component';
 import { StandardComponent } from './standard/standard.component';
 import { PatientsRoutingModule } from './patients-routing.module';
 import { PatientsState } from 'src/app/state/patients/patients.state';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PatientsState } from 'src/app/state/patients/patients.state';
     ReactiveFormsModule,
     TextMaskModule,
     ComponentsModule,
-    NgxsModule.forFeature([PatientsState])
+    NgxsModule.forFeature([PatientsState]),
+    NgxsFormPluginModule
   ]
 })
 export class PatientsModule {}

@@ -86,7 +86,6 @@ export class PatientsState {
   ) {
     return this.ds.read$<Patient>('patients', payload).pipe(
       tap(p => {
-        console.log(p);
         dispatch(
           new UpdateFormValue({
             path: 'patients.patient',

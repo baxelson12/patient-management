@@ -7,6 +7,7 @@ import { NavComponent } from './nav/nav.component';
 import { NotificationComponent } from './notification/notification.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PatientsRoutingModule } from '../pages/patients/patients-routing.module';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PatientsRoutingModule } from '../pages/patients/patients-routing.module
     MetricComponent,
     NavComponent,
     NotificationComponent,
-    SidebarComponent
+    SidebarComponent,
+    InputComponent
   ],
   imports: [CommonModule, ReactiveFormsModule, PatientsRoutingModule],
   exports: [
@@ -22,7 +24,8 @@ import { PatientsRoutingModule } from '../pages/patients/patients-routing.module
     MetricComponent,
     NavComponent,
     NotificationComponent,
-    SidebarComponent
+    SidebarComponent,
+    InputComponent
   ]
 })
 export class ComponentsModule {}

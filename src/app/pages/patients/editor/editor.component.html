@@ -18,49 +18,35 @@
     <fieldset class="mb-5 appearance-none" formGroupName="name">
       <!-- <h3 class="text-lg mb-2">Name</h3> -->
       <div class="flex">
-        <label class="flex flex-col flex-grow">
-          <input
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-            type="text"
-            placeholder="John"
-            formControlName="first"
-            required
-          />
-          <span class="text-xs text-gray-700 ml-4">First Name</span>
-        </label>
-        <label class="mx-4 flex flex-col flex-shrink">
-          <input
-            class="w-full appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-            type="text"
-            placeholder="W"
-            formControlName="middle"
-          />
-          <span class="text-xs text-gray-700 ml-4">M.I.</span>
-        </label>
-        <label class="flex flex-col flex-grow">
-          <input
-            type="text"
-            placeholder="Doe"
-            formControlName="last"
-            required
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          />
-          <span class="text-xs text-gray-700 ml-4">Last Name</span>
-        </label>
+        <app-input
+          formControlName="first"
+          placeholder="John"
+          class="flex-grow"
+          >First Name</app-input
+        >
+        <app-input
+          class="flex-shrink mx-4"
+          formControlName="middle"
+          placeholder="T"
+          >M.I.</app-input
+        >
+        <app-input
+          formControlName="last"
+          placeholder="Doe"
+          class="flex-grow"
+          >Last Name</app-input
+        >
       </div>
     </fieldset>
     <div class="flex mb-5">
-      <label class="mr-4 flex flex-col flex-shrink">
-        <input
-          type="date"
-          formControlName="dob"
-          required
-          style="padding-bottom: 1.5px;"
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-        />
-        <span class="text-xs text-gray-700 ml-4">Date of Birth</span>
-      </label>
-      <label class="flex flex-col flex-shrink">
+      <app-input
+        formControlName="dob"
+        type="date"
+        style="padding-bottom: 1.5px;"
+        class="mr-4"
+        >Date of Birth</app-input
+      >
+      <label class="flex flex-col">
         <div class="relative">
           <select
             formControlName="gender"
@@ -89,106 +75,71 @@
       </label>
     </div>
     <div class="flex mb-10">
-      <label class="mr-4 flex flex-col flex-grow">
-        <input
-          type="email"
-          placeholder="jdoe@example.com"
-          formControlName="email"
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-        />
-        <span class="text-xs text-gray-700 ml-4">Email</span>
-      </label>
-      <label class="flex flex-col flex-grow">
-        <input
-          type="tel"
-          placeholder="(248) 333-0303"
-          [textMask]="{ mask: mask }"
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          formControlName="phone"
-          required
-        />
-        <span class="text-xs text-gray-700 ml-4">Phone</span>
-      </label>
+      <app-input
+        formControlName="email"
+        type="email"
+        placeholder="jdoe@example.com"
+        class="flex-grow mr-4"
+        >Email</app-input
+      >
+      <app-input
+        formControlName="phone"
+        placeholder="(248) 333-0303"
+        class="flex-grow"
+        >Phone</app-input
+      >
     </div>
-    <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
-
     <fieldset class="appearance-none" formGroupName="address">
       <div class="flex mb-5">
-        <label class="mr-4 flex flex-col flex-grow">
-          <input
-            type="text"
-            placeholder="1452 Right Way"
-            formControlName="line_1"
-            required
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          />
-          <span class="text-xs text-gray-700 ml-4">Line 1</span>
-        </label>
-        <label class="flex flex-col flex-grow">
-          <input
-            type="text"
-            placeholder="Apt. #5"
-            formControlName="line_2"
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          />
-          <span class="text-xs text-gray-700 ml-4">Line 2</span>
-        </label>
+        <app-input
+          placeholder="1452 Right Way"
+          formControlName="line_1"
+          class="flex-grow mr-4"
+          >Line 1</app-input
+        >
+        <app-input
+          placeholder="Apt. #5"
+          formControlName="line_2"
+          class="flex-grow"
+          >Line 2</app-input
+        >
       </div>
       <div class="flex mb-10">
-        <label class="flex flex-col flex-grow">
-          <input
-            type="text"
-            placeholder="Yorkshire"
-            formControlName="city"
-            required
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          />
-          <span class="text-xs text-gray-700 ml-4">City</span>
-        </label>
-        <label class="flex flex-col mx-4 flex-shrink">
-          <input
-            class="w-full appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-            type="text"
-            placeholder="NY"
-            formControlName="state"
-            required
-          />
-          <span class="text-xs text-gray-700 ml-4">State</span>
-        </label>
-        <label class="flex flex-col flex-grow">
-          <input
-            type="text"
-            placeholder="44864"
-            pattern="[0-9]{5}"
-            formControlName="zip"
-            required
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-          />
-          <span class="text-xs text-gray-700 ml-4">Zip Code</span>
-        </label>
+        <app-input
+          placeholder="Yorkshire"
+          formControlName="city"
+          class="flex-grow"
+          >City</app-input
+        >
+        <app-input
+          placeholder="NY"
+          formControlName="state"
+          class="flex-shrink mx-4"
+          >State</app-input
+        >
+        <app-input
+          placeholder="44864"
+          formControlName="zip"
+          class="flex-shrink"
+          >Zip Code</app-input
+        >
       </div>
     </fieldset>
 
     <div class="flex mb-6">
-      <label class="flex flex-col mr-4 flex-grow">
-        <input
-          type="text"
-          placeholder="Blue Care Network"
-          formControlName="insurance"
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-        />
-        <span class="text-xs text-gray-700 ml-4">Insurance</span>
-      </label>
-      <label class="flex flex-col flex-grow">
-        <input
-          type="date"
-          style="padding-bottom: 1.5px;"
-          formControlName="last_exam"
-          required
-          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
-        />
-        <span class="text-xs text-gray-700 ml-4">Last Exam</span>
-      </label>
+      <app-input
+        placeholder="Blue Care Network"
+        formControlName="insurance"
+        class="flex-grow mr-4"
+        >Insurance</app-input
+      >
+      <app-input
+        type="date"
+        style="padding-bottom: 1.5px;"
+        formControlName="last_exam"
+        class="flex-shrink"
+        >Last Exam</app-input
+      >
     </div>
     <label class="flex flex-col mb-6">
       <textarea

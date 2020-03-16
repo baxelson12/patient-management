@@ -1,0 +1,50 @@
+import { Component, Input, forwardRef } from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
+/*
+  Usage:
+  <app-input placeholder="John"
+             type="text"
+            formControlName="first_name">
+    First Name
+  </app-input>
+*/
+
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true
+    }
+  ]
+})
+export class InputComponent implements ControlValueAccessor {
+  @Input() _val: string;
+  @Input() placeholder: string;
+  @Input() type = 'text';
+
+  set val(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement;
+    this._val = target.value;
+    this.prop(this._val);
+  }
+
+  constructor() {}
+
+  writeValue(v: string) {
+    if (v !== undefined) {
+      this._val = v;
+    }
+  }
+  prop = (_: any) => {};
+  registerOnChange(fn) {
+    this.prop = fn;
+  }
+  registerOnTouched() {}
+}

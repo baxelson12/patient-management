@@ -8,9 +8,4 @@ import { Notification } from './models/notification';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  @Select(state => state.app.notifications) notifications: Observable<
-    Notification[]
-  >;
-  constructor() {}
-}
+export class AppComponent {}

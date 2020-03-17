@@ -33,7 +33,7 @@ export class AppState {
   ) {
     return patchState({
       notifications: getState().notifications.filter(
-        p => p.id === payload.id
+        p => payload !== p
       )
     });
   }

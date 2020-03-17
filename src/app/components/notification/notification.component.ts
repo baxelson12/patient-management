@@ -1,14 +1,41 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {
   trigger,
   transition,
   style,
-  animate
+  animate,
+  stagger,
+  query
 } from '@angular/animations';
-import { asyncScheduler } from 'rxjs';
+import {
+  asyncScheduler,
+  Observable,
+  Subscription,
+  asapScheduler
+} from 'rxjs';
 import { Notification } from '../../models/notification';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { RemoveNotification } from 'src/app/state/app/app.actions';
+import { distinctUntilChanged } from 'rxjs/operators';
+
+// transition(':enter', [
+//   style({ transform: 'translate(0, 8rem)', opacity: 0 }),
+//   stagger(100, [
+//     animate(
+//       '1s ease-out',
+//       style({ transform: 'translate(0)', opacity: 1 })
+//     )
+//   ])
+// ]),
+// transition(':leave', [
+//   style({ transform: 'translate(0)', opacity: 1 }),
+//   stagger(100, [
+//     animate(
+//       '1s ease-out',
+//       style({ transform: 'translate(0, 8rem)', opacity: 0 })
+//     )
+//   ])
+// ])
 
 @Component({
   selector: 'app-notification',
@@ -16,32 +43,69 @@ import { RemoveNotification } from 'src/app/state/app/app.actions';
   styleUrls: ['./notification.component.scss'],
   animations: [
     trigger('inOutAnimation', [
-      transition(':enter', [
-        style({ transform: 'translate(0, 8rem)', opacity: 0 }),
-        animate(
-          '1s ease-out',
-          style({ transform: 'translate(0)', opacity: 1 })
-        )
-      ]),
-      transition(':leave', [
-        style({ transform: 'translate(0)', opacity: 1 }),
-        animate(
-          '1s ease-out',
-          style({ transform: 'translate(0, 8rem)', opacity: 0 })
+      transition('* => *', [
+        query(
+          ':leave',
+          [
+            stagger(300, [
+              animate(
+                '300ms ease-out',
+                style({ transform: 'translate(8rem, 0)', opacity: 0 })
+              )
+            ])
+          ],
+          { optional: true }
+        ),
+        query(
+          ':enter',
+          [
+            style({ transform: 'translate(0, 1rem)', opacity: 0 }),
+            stagger(300, [
+              animate(
+                '300ms ease-in',
+                style({ transform: 'translate(0)', opacity: 1 })
+              )
+            ])
+          ],
+          { optional: true }
         )
       ])
     ])
   ]
 })
-export class NotificationComponent implements OnInit {
-  @Input() notification: Notification;
-  open = true;
-  constructor(private store: Store) {}
+export class NotificationComponent implements OnInit, OnDestroy {
+  @Select(state => state.app.notifications) notifications: Observable<
+    Notification[]
+  >;
+  index: number;
+  sub: Subscription;
 
+  constructor(private store: Store) {}
   ngOnInit(): void {
+    this.sub = this.notifications
+      .pipe(distinctUntilChanged())
+      .subscribe(arr => {
+        if (this.index < arr.length) {
+          console.log('Scheduling ::', arr[arr.length - 1].id);
+          this.schedule(arr[arr.length - 1]);
+        }
+        this.index = arr.length;
+      });
+  }
+
+  private schedule(notification: Notification) {
     asyncScheduler.schedule(() => {
-      this.open = false;
-      this.store.dispatch(new RemoveNotification(this.notification));
-    }, this.notification.time);
+      console.log('Timed out ::', notification.id);
+      this.store.dispatch(new RemoveNotification(notification));
+    }, notification.time);
+  }
+
+  close(notification: Notification) {
+    console.log('Removing ::', notification.id);
+    this.store.dispatch(new RemoveNotification(notification));
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

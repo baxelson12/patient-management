@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import {
+  map,
+  switchMap,
+  distinctUntilChanged,
+  debounceTime
+} from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import 'firebase/firestore';
@@ -31,6 +36,8 @@ export class DataService {
       )
       .snapshotChanges()
       .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
         map(actions =>
           actions.map(action => {
             const id = action.payload.doc.id;

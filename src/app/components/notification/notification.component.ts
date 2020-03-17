@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   trigger,
   transition,
@@ -7,35 +7,11 @@ import {
   stagger,
   query
 } from '@angular/animations';
-import {
-  asyncScheduler,
-  Observable,
-  Subscription,
-  asapScheduler
-} from 'rxjs';
+import { asyncScheduler, Observable, Subscription } from 'rxjs';
 import { Notification } from '../../models/notification';
 import { Store, Select } from '@ngxs/store';
 import { RemoveNotification } from 'src/app/state/app/app.actions';
 import { distinctUntilChanged } from 'rxjs/operators';
-
-// transition(':enter', [
-//   style({ transform: 'translate(0, 8rem)', opacity: 0 }),
-//   stagger(100, [
-//     animate(
-//       '1s ease-out',
-//       style({ transform: 'translate(0)', opacity: 1 })
-//     )
-//   ])
-// ]),
-// transition(':leave', [
-//   style({ transform: 'translate(0)', opacity: 1 }),
-//   stagger(100, [
-//     animate(
-//       '1s ease-out',
-//       style({ transform: 'translate(0, 8rem)', opacity: 0 })
-//     )
-//   ])
-// ])
 
 @Component({
   selector: 'app-notification',

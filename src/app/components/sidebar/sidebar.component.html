@@ -9,6 +9,7 @@
           [routerLinkActiveOptions]="{ exact: true }"
           routerLinkActive
           #rlaDash="routerLinkActive"
+          (click)="formReset()"
           [ngClass]="
             rlaDash.isActive ? 'border-blue-600' : 'border-gray-800'
           "
@@ -29,6 +30,7 @@
           routerLink="/patients/edit"
           routerLinkActive
           #rlaEdit="routerLinkActive"
+          (click)="formReset()"
           [ngClass]="
             rlaEdit.isActive ? 'border-pink-500' : 'border-gray-800'
           "

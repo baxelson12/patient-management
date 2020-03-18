@@ -82,12 +82,17 @@
         class="flex-grow mr-4"
         >Email</app-input
       >
-      <app-input
-        formControlName="phone"
-        placeholder="(248) 333-0303"
-        class="flex-grow"
-        >Phone</app-input
-      >
+      <label class="flex flex-col flex-grow">
+        <input
+          type="tel"
+          placeholder="(248) 333-0303"
+          [textMask]="{ mask: mask, placeholderChar: '\u2000' }"
+          class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+          formControlName="phone"
+          required
+        />
+        <span class="text-xs text-gray-700 ml-4">Phone</span>
+      </label>
     </div>
     <fieldset class="appearance-none" formGroupName="address">
       <div class="flex mb-5">

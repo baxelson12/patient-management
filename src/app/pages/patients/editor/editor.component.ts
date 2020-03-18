@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { UpdateFormValue } from '@ngxs/form-plugin';
+import { conformToMask } from 'angular2-text-mask';
 
 @Component({
   selector: 'app-editor',
@@ -87,6 +88,7 @@ export class EditorComponent implements OnInit {
 
   reset() {
     this.patient.reset();
+    this.router.navigate(['patients/edit']);
     this.store.dispatch(
       new UpdateFormValue({ path: 'patients.selected', value: {} })
     );
@@ -107,6 +109,17 @@ export class EditorComponent implements OnInit {
     if (!this.patient.valid) {
       return;
     }
+    const conformedPhoneNumber = conformToMask(
+      this.patient.value['phone'],
+      this.mask,
+      { guide: false }
+    );
+    this.patient.setValue({
+      ...this.patient.value,
+      phone: conformedPhoneNumber.conformedValue
+    });
+
+    console.log(this.patient.value);
     if (this.patient.value.id) {
       this.store.dispatch(
         new actions.UpdatePatient(this.patient.value)

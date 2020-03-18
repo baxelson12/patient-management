@@ -8,6 +8,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { PatientsRoutingModule } from '../pages/patients/patients-routing.module';
 import { InputComponent } from './input/input.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InputComponent } from './input/input.component';
     NavComponent,
     NotificationComponent,
     SidebarComponent,
-    InputComponent
+    InputComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { InputComponent } from './input/input.component';
     NavComponent,
     NotificationComponent,
     SidebarComponent,
-    InputComponent
+    InputComponent,
+    ButtonComponent
   ]
 })
 export class ComponentsModule {}

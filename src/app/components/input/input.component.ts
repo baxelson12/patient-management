@@ -25,19 +25,21 @@ import {
   ]
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() _val: string;
   @Input() placeholder: string;
   @Input() type = 'text';
+  _val: string;
 
-  set val(event: KeyboardEvent) {
-    const target = event.target as HTMLInputElement;
-    this._val = target.value;
+  get val() {
+    return this._val;
+  }
+  set val(v) {
+    this._val = v;
     this.prop(this._val);
   }
 
   constructor() {}
 
-  writeValue(v: string) {
+  writeValue(v: any) {
     if (v !== undefined) {
       this._val = v;
     }

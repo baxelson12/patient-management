@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { MetricComponent } from './metric/metric.component';
 import { NavComponent } from './nav/nav.component';
@@ -18,7 +18,12 @@ import { InputComponent } from './input/input.component';
     SidebarComponent,
     InputComponent
   ],
-  imports: [CommonModule, ReactiveFormsModule, PatientsRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PatientsRoutingModule
+  ],
   exports: [
     CardComponent,
     MetricComponent,

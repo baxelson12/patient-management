@@ -4,7 +4,6 @@ import * as actions from '../../../state/patients/patients.actions';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { DataService } from 'src/app/data.service';
 import { UpdateFormValue } from '@ngxs/form-plugin';
 
 @Component({
@@ -56,6 +55,7 @@ export class EditorComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -82,6 +82,7 @@ export class EditorComponent implements OnInit {
     this.store.dispatch(
       new actions.DestroyPatient(this.patient.value)
     );
+    this.router.navigate(['patients']);
   }
 
   reset() {

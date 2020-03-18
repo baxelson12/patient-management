@@ -138,7 +138,7 @@ export class PatientsState {
       );
   }
 
-  // Query patients
+  // Query
   @Action(actions.QueryPatients)
   query(
     { patchState, dispatch }: StateContext<PatientsStateModel>,

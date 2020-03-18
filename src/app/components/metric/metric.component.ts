@@ -20,6 +20,7 @@ export class MetricComponent {
   @Input() color: string;
   @Input() icon: string;
 
+  // Create tailwind classes for use
   get definedBorder() {
     return 'border-' + this.color + '-600';
   }

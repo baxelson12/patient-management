@@ -26,7 +26,7 @@ export class DataService {
       .join(' ');
   }
 
-  // Querying
+  // Query
   query$<T>(collection: string, q: string): Observable<T[]> {
     return this.fs
       .collection<T>(collection, ref =>

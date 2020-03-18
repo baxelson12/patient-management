@@ -37,16 +37,18 @@ export class InputComponent implements ControlValueAccessor {
     this.prop(this._val);
   }
 
-  constructor() {}
-
   writeValue(v: any) {
     if (v !== undefined) {
       this._val = v;
     }
   }
+  // Notifies angular of changes
   prop = (_: any) => {};
+
+  // Set change function
   registerOnChange(fn) {
     this.prop = fn;
   }
+
   registerOnTouched() {}
 }

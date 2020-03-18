@@ -14,6 +14,8 @@ import { map } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
   constructor(private auth: AngularFireAuth) {}
+
+  // Firebase provides user variable if auth'd.  If it exists, we're logged in.
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

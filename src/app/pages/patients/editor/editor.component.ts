@@ -35,6 +35,8 @@ export class EditorComponent implements OnInit {
     notes: new FormControl(),
     id: new FormControl()
   });
+
+  // Phone input regex
   mask = [
     '(',
     /[1-9]/,
@@ -54,9 +56,7 @@ export class EditorComponent implements OnInit {
 
   constructor(
     private readonly store: Store,
-    private route: ActivatedRoute,
-    private router: Router,
-    private ds: DataService
+    private route: ActivatedRoute
   ) {}
 
   routemon: Observable<ParamMap> = this.route.paramMap;

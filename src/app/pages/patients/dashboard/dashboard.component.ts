@@ -14,6 +14,8 @@ import { DataService } from 'src/app/data.service';
 })
 export class DashboardComponent implements OnInit {
   @Select(state => state.patients) patientsStore: Observable<any>;
+
+  // Recently added patients
   recents = this.patientsStore.pipe(
     map(store =>
       store.patients.filter(
@@ -23,23 +25,30 @@ export class DashboardComponent implements OnInit {
       )
     )
   );
+
+  // Uninsured patients
   uninsured = this.patientsStore.pipe(
     map(store => store.patients.filter((p: Patient) => !p.insurance))
   );
+
+  // Patients missing email
   emails = this.patientsStore.pipe(
     map(store => store.patients.filter((p: Patient) => !p.email))
   );
+
+  // Time since deployment
   uptime = Math.floor(
     DateTime.local()
       .diff(DateTime.fromISO('2020-03-08'), 'days')
       .toObject().days
   );
 
+  // Take first 3 from array
   sample<T>(arr: T[]) {
     return arr.slice(0, 3);
   }
-  constructor(private store: Store, private ds: DataService) {}
 
+  constructor(private store: Store, private ds: DataService) {}
   ngOnInit(): void {
     this.store.dispatch([
       new actions.AllPatients(),

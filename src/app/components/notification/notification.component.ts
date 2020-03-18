@@ -56,31 +56,32 @@ export class NotificationComponent implements OnInit, OnDestroy {
   index: number;
   sub: Subscription;
 
+  // Subscribe to state to receive notifications
   constructor(private store: Store) {}
   ngOnInit(): void {
     this.sub = this.notifications
       .pipe(distinctUntilChanged())
       .subscribe(arr => {
         if (this.index < arr.length) {
-          console.log('Scheduling ::', arr[arr.length - 1].id);
           this.schedule(arr[arr.length - 1]);
         }
         this.index = arr.length;
       });
   }
 
+  // Set a timer to remove notification from display
   private schedule(notification: Notification) {
     asyncScheduler.schedule(() => {
-      console.log('Timed out ::', notification.id);
       this.store.dispatch(new RemoveNotification(notification));
     }, notification.time);
   }
 
+  // Close notification
   close(notification: Notification) {
-    console.log('Removing ::', notification.id);
     this.store.dispatch(new RemoveNotification(notification));
   }
 
+  // Cleanup
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

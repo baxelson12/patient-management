@@ -10,6 +10,7 @@ import { UpdateFormValue } from '@ngxs/form-plugin';
 import { AddNotification } from '../app/app.actions';
 import { Notification } from '../../models/notification';
 import { Navigate } from '@ngxs/router-plugin';
+import { Router } from '@angular/router';
 
 export class PatientsStateModel {
   public loading: boolean;
@@ -43,7 +44,10 @@ export class PatientsStateModel {
 })
 @Injectable({ providedIn: 'root' })
 export class PatientsState {
-  constructor(private readonly ds: DataService) {}
+  constructor(
+    private readonly ds: DataService,
+    private router: Router
+  ) {}
 
   // All
   @Action(actions.AllPatients)
@@ -126,16 +130,12 @@ export class PatientsState {
       message: 'Patient deleted.',
       status: 'Success'
     };
-    return this.ds
-      .destroy$<Patient>('patients', payload)
-      .pipe(
-        tap(() =>
-          dispatch([
-            new Navigate(['/patients']),
-            new AddNotification(notification)
-          ])
-        )
-      );
+    return this.ds.destroy$<Patient>('patients', payload).pipe(
+      tap(() => {
+        this.router.navigate(['patients']);
+        return dispatch([new AddNotification(notification)]);
+      })
+    );
   }
 
   // Query

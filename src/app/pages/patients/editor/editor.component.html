@@ -17,15 +17,15 @@
     </h1>
     <fieldset class="mb-5 appearance-none" formGroupName="name">
       <!-- <h3 class="text-lg mb-2">Name</h3> -->
-      <div class="flex">
+      <div class="flex flex-col mb-2 md:flex-row">
         <app-input
           formControlName="first"
           placeholder="John"
-          class="flex-grow"
+          class="flex-grow mb-2 md:mb-0"
           >First Name</app-input
         >
         <app-input
-          class="flex-shrink mx-4"
+          class="flex-shrink md:mx-4 mb-2 md:mb-0"
           formControlName="middle"
           placeholder="T"
           >M.I.</app-input
@@ -33,17 +33,17 @@
         <app-input
           formControlName="last"
           placeholder="Doe"
-          class="flex-grow"
+          class="flex-grow mb-2 md:mb-0"
           >Last Name</app-input
         >
       </div>
     </fieldset>
-    <div class="flex mb-5">
+    <div class="flex flex-col mb-5 md:flex-row">
       <app-input
         formControlName="dob"
         type="date"
         style="padding-bottom: 1.5px;"
-        class="mr-4"
+        class="md:mr-4 mb-2 md:mb-0"
         >Date of Birth</app-input
       >
       <label class="flex flex-col">
@@ -51,7 +51,7 @@
           <select
             formControlName="gender"
             required
-            class="appearance-none border-t border-gray-300 bg-gray-100 rounded py-2 px-4 pr-8 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
+            class="appearance-none w-full border-t border-gray-300 bg-gray-100 rounded py-2 px-4 pr-8 transition-all duration-500 ease-in-out shadow-inner focus:outline-none focus:shadow-none"
           >
             <option value="">--Select an option--</option>
             <option value="true">Male</option>
@@ -74,12 +74,12 @@
         <span class="text-xs text-gray-700 ml-4">Gender</span>
       </label>
     </div>
-    <div class="flex mb-10">
+    <div class="flex flex-col mb-10 md:flex-row">
       <app-input
         formControlName="email"
         type="email"
         placeholder="jdoe@example.com"
-        class="flex-grow mr-4"
+        class="flex-grow mb-2 md:mr-4 md:mb-0"
         >Email</app-input
       >
       <label class="flex flex-col flex-grow">
@@ -95,11 +95,11 @@
       </label>
     </div>
     <fieldset class="appearance-none" formGroupName="address">
-      <div class="flex mb-5">
+      <div class="flex flex-col mb-5 md:flex-row">
         <app-input
           placeholder="1452 Right Way"
           formControlName="line_1"
-          class="flex-grow mr-4"
+          class="flex-grow mb-2 md:mb-0 md:mr-4"
           >Line 1</app-input
         >
         <app-input
@@ -109,17 +109,17 @@
           >Line 2</app-input
         >
       </div>
-      <div class="flex mb-10">
+      <div class="flex flex-col mb-10 md:flex-row">
         <app-input
           placeholder="Yorkshire"
           formControlName="city"
-          class="flex-grow"
+          class="flex-grow mb-2 md:mb-0"
           >City</app-input
         >
         <app-input
           placeholder="NY"
           formControlName="state"
-          class="flex-shrink mx-4"
+          class="flex-shrink md:mx-4 mb-2 md:mb-0"
           >State</app-input
         >
         <app-input
@@ -131,11 +131,11 @@
       </div>
     </fieldset>
 
-    <div class="flex mb-6">
+    <div class="flex flex-col mb-6 md:flex-row">
       <app-input
         placeholder="Blue Care Network"
         formControlName="insurance"
-        class="flex-grow mr-4"
+        class="flex-grow mb-2 md:mb-0 md:mr-4"
         >Insurance</app-input
       >
       <app-input

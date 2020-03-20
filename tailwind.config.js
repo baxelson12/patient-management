@@ -8,7 +8,7 @@ module.exports = {
     backgroundColor: ['focus-within', 'hover', 'focus'],
     borderColor: ['active'],
     textColor: ['group-hover', 'hover'],
-    margin: ['focus'],
+    margin: ['focus', 'responsive'],
     translate: ['active'],
     borderWidth: ['active']
   },

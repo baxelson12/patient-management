@@ -27,7 +27,7 @@
     "angular2-text-mask": "^9.0.0",
     "firebase": "^7.8.0",
     "guid-typescript": "^1.0.9",
-    "luxon": "^1.22.0",
+    "luxon": "^1.28.1",
     "rxjs": "~6.5.4",
     "tailwindcss": "^1.2.0",
     "tslib": "^1.10.0",
